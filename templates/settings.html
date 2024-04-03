@@ -1,0 +1,75 @@
+{%extends "layouts/base.html" %}
+{% load static %}
+{% block nav %}
+  {% include "layouts/nav.html"%}
+{%endblock%}
+{%block content %}
+<div class="d-flex gap-3 align-items-center">
+  <h1>Settings: Dr.Pepper</h1>
+</div>
+<div class="col-md-8">
+  <article class="mb-10 w-100">
+    <div class="row g-0">
+      <div class="col-0 p-2">
+    </div>
+      <div class="col">
+        <div class="card-body">
+          <form>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="mb-1">
+                        <label for="Login" class="form-label"><strong>Login</strong></label>
+                        <input type="text" class="form-control" id="login" placeholder="Enter your login here">
+                    </div>
+                </div>
+              </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="mb-1">
+                        <label for="Email" class="form-label"><strong>Email</strong></label>
+                        <input type="text" class="form-control" id="email" placeholder="Enter your email here">
+                    </div>
+                </div>
+            </div>
+              <div class="row">
+                <div class="col-md-6">
+                    <div class="mb-1">
+                        <label for="Nickname" class="form-label"><strong>Nickname</strong></label>
+                        <input type="text" class="form-control" id="nickname" placeholder="Enter your nickname here">
+                    </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                    <div class="mb-1">
+                        <label for="avatar" class="form-label"><strong>Current avatar</strong></label>
+                        <div class="input-group mb-2">
+                            <img src="{% static 'img/cat.jpg' %}" alt="Current avatar" class="img-thumbnail" width="100">
+                        </div>
+                    </div>
+                </div>
+            </div>
+              <div class="row">
+                <div class="col-md-6">
+                    <div class="mb-1">
+                            <label for="avatar" class="form-label"><strong>Upload avatar</strong></label>
+                            <div class="input-group">
+                                    <input type="file" class="form-control" id="avatar" accept="image/*">
+                            </div>
+                    </div>
+                </div>
+              </div>
+            <div class="row mt-2">
+                <div class="col-md-8">
+                    <div class="mb-2">
+                        <button type="submit" class="btn btn-success">Save!</button>
+                    </div>
+                </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </article>
+</div>
+{%endblock%}

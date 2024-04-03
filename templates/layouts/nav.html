@@ -1,0 +1,14 @@
+{%extends "layouts/header.html" %}
+{% load static %}
+{%block content%}
+<div class="border">
+<img src="{% static 'img/cat.jpg' %}" width="50" height="50" />
+</div>
+<div class="d-flex flex-column justify-content-between">
+<div>Dr. Pepper</div>
+  <div>
+    <a href="{% url 'settings'%}">Settings</a>
+    <a href="{% url 'logout' %}">Log out</a>
+  </div>
+</div>
+{%endblock%} 

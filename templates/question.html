@@ -1,0 +1,33 @@
+{%extends "layouts/base.html" %}
+{% load static %}
+{% block nav %}
+  {% include "layouts/unnav.html"%}
+{%endblock%}
+{%block content %}
+  <div class="col-8">
+    {%include "layouts/question.html" with item=question%}
+    <hr>
+    {%for item in answer%}
+      {% include "layouts/answer.html" %}
+    {%endfor%}
+      {% include "layouts/pagination.html" with page_obj=answer %}
+    <article class="mb-5 w-100">
+      <div class="row g-0">
+        <div class="col-0 p-0">
+        </div>
+        <div class="col p-0">
+          <div class="card-body">
+            <form>
+              <div class="mb-3 w-100">
+                <textarea class="form-control" id="questionText" placeholder="Enter your answer there" rows="7" style="width: 100%;"></textarea>
+              </div>
+              <div class="mt-1 ms-0">
+                <button type="submit" class="btn btn-outline-success" style="width: 15%;">Answer</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </article>
+  </div>
+{%endblock%}

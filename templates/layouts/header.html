@@ -1,0 +1,19 @@
+{% load static %}
+
+<nav class="navbar bg-body-tertiary">
+    <div class="container-sm-fluid container-lg">
+      <a class="navbar-brand" href="{% url 'index'%}">AskMe</a>
+      <form class="d-flex" role="search">
+        <input
+          class="form-control me-2"
+          type="search"
+          placeholder="Search"
+          aria-label="Search"
+        />
+        <a href="{% url 'ask' %}" class="btn btn-outline-success">ASK!</a>
+      </form>
+      <div class="d-flex justify-content-between gap-3">
+        {%block content%}
+        {%endblock%}        
+    </div>
+</nav>
