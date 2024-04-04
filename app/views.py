@@ -1,6 +1,6 @@
 from django.http import HttpResponse
 from django.shortcuts import redirect, render
-from django.core.paginator import Paginator
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 # Create your views here.
 
 QUESTIONS = [
@@ -21,7 +21,12 @@ ANSWERS = [
 def paginate(request, object_list, per_page = 5):
     page_num = request.GET.get('page', 1)
     paginator = Paginator(object_list, per_page)
-    page_obj = paginator.page(page_num)
+    try:
+        page_obj = paginator.page(page_num)
+    except PageNotAnInteger:
+        page_obj = paginator.page(1)
+    except EmptyPage:
+        page_obj = paginator.page(paginator.num_pages)
     return paginator, page_obj, page_num
 
 def index(request):

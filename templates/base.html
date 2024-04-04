@@ -1,7 +1,7 @@
 {%extends "layouts/base.html" %}
 {% load static %}
 {% block nav %}
-  {% include "layouts/nav.html"%}
+  {% include "components/nav.html"%}
 {%endblock%}
 {%block content %}
   <div class="d-flex gap-3 align-items-center">
@@ -10,8 +10,8 @@
   </div>
   <div class="col-8">
     {% for question in questions %}
-      {% include "layouts/question.html" with item=question %}
+      {% include "components/question.html" with item=question %}
     {% endfor %}
-    {% include "layouts/pagination.html" with page_obj=questions %}
+    {% include "components/pagination.html" with page_obj=questions %}
   </div>
 {%endblock%}
