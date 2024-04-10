@@ -4,8 +4,9 @@
       <div class="col-2 p-2">
         <div class="border w-100 mb-3" style="height: 100px">
           <img
-            src="{% static 'img/catty.jpg' %}"
-            class="img-fluid rounded-start"
+            src="{{ question.profile.avatar }}"
+            class="image-field rounded-start"
+            style="width: 100%; height: 100%;"
             alt="..."
           />
         </div>
@@ -16,18 +17,18 @@
       <div class="col">
         <div class="card-body">
           <h5 class="card-title">
-            <a href="{% url 'question' item.id%}">{{item.title}}</a>
+            <a href="{% url 'question' question.id%}">{{question.id}}</a>
           </h5>
           <p class="card-text">
-            {{item.text}}
+            {{question.text}}
           </p>
           <div class="row">
-            <a class="col-4" href="{% url 'question' item.id%}">answers (3)</a>
+            <a class="col-4" href="{% url 'question' question.id%}">answers (2)</a>
             <div class="col-8">
               <span>Tags</span>
-              {% for tag in item.tag %}
-                <a href="{% url 'tag' tag%}">{{tag}}</a>
-              {%endfor%}
+              {% for t in question.tag.all %}
+              <a href="{% url 'tag' t.name %}">{{ t.name }}</a>
+              {% endfor %}
             </div>
           </div>
         </div>

@@ -11,7 +11,7 @@
   </div>
   <div class="col-8">
     {% for question in questions %}
-       {% include "components/question.html" with item=question %}
+       {% include "components/question.html" with item=question.question %}
     {% endfor %}
     {% include "components/pagination.html" with page_obj=questions %}
   </div>

@@ -1,22 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import redirect, render
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-# Create your views here.
-
-QUESTIONS = [
-    {
-        "id": i,
-        "title": f"Question {i}",
-        "text": f"This is question number {i}",
-        "tag": ['tag1', 'tag2', 'tag3'],
-    } for i in range(10)
-]
-
-ANSWERS = [
-    {
-        "text": f"This is answer number {i}" 
-    } for i in range(5)
-]
+from app.models import Question, Answers, Like, Tag, Profile, User, Count
 
 def paginate(request, object_list, per_page = 5):
     page_num = request.GET.get('page', 1)
@@ -30,17 +15,20 @@ def paginate(request, object_list, per_page = 5):
     return paginator, page_obj, page_num
 
 def index(request):
-    paginator, question, page_num = paginate(request, QUESTIONS)
-    return render(request,'base.html', {"questions": question, "paginator": paginator })
+    paginator, question, page_num = paginate(request, Question.objects.get_last_questions())
+    context = {"questions" : question, "paginator": paginator}
+    return render(request,'base.html', context)
 
 def hot(request):
-    paginator, question, page_num = paginate(request, QUESTIONS)
-    return render(request,'hot.html', {"questions": question, "paginator": paginator })
+    paginator, question, page_num = paginate(request, Question.objects.get_hot_questions()[0:10])
+    context = {"questions": question, "paginator": paginator }
+    return render(request,'hot.html', context)
 
 def question(request, question_id):
-    item = QUESTIONS[question_id]
-    paginator, answers, page_num = paginate(request, ANSWERS, 2)
-    return render(request, 'question.html', {"question" :item, "answer": answers, "paginator": paginator})
+    item = Question.objects.get(pk=question_id)
+    paginator, answers, page_num = paginate(request, Answers.objects.get_answers(question_id), 2)
+    context =  {"question" :item, "answers": answers, "paginator": paginator}
+    return render(request, 'question.html', context)
 
 def ask(request):
     return render(request, 'ask.html')
@@ -58,7 +46,6 @@ def settings(request):
     return render(request, 'settings.html')
 
 def tag(request, tag_name):
-    for q in QUESTIONS:
-        q["tags"] = tag_name
-    paginator, question, page_num = paginate(request, QUESTIONS)
-    return render(request, 'tag.html', {"tag": tag_name, "questions" :question, "paginator": paginator})
+    paginator, question, page_num = paginate(request, Question.objects.get_questions_by_tag(tag_name))
+    context = {"tag": tag_name, "questions" :question, "paginator": paginator}
+    return render(request, 'tag.html', context)

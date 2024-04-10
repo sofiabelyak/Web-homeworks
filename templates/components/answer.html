@@ -5,7 +5,7 @@
       <div class="col-2 p-2">
         <div class="border w-100 mb-3" style="height: 100px">
           <img
-            src="{% static 'img/catty.jpg' %}"
+            src="{{ answer.profile.avatar }}"
             class="img-fluid rounded-start"
             alt="..."
           />
@@ -17,8 +17,7 @@
       <div class="col">
         <div class="card-body">
           <p class="card-text">
-            It sounds like you're in quite a pickle at the moon park!
-            Losing the blackjack attraction must be frustrating, especially considering its importance to the visitor experience.
+            {{answer.text}}
           </p>
           <div class="form-check">
             <input class="form-check-input" type="checkbox" value="" id="correctCheck">

@@ -7,8 +7,8 @@
   <div class="col-8">
     {%include "components/question.html" with item=question%}
     <hr>
-    {%for item in answer%}
-      {% include "components/answer.html" %}
+    {%for item in answers%}
+      {% include "components/answer.html" with answer=item %}
     {%endfor%}
       {% include "components/pagination.html" with page_obj=answer %}
     <article class="mb-5 w-100">
