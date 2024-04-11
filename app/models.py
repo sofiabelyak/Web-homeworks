@@ -32,7 +32,7 @@ class QuestionManager(models.Manager):
         return self.order_by("-created_at")
     
     def get_hot_questions(self):
-        return self.annotate(num_like=Count('like')).order_by('-num_like')
+        return self.annotate(num_likequestion=Count('likequestion')).order_by('-num_likequestion')
     
 class Question(models.Model):
     text = models.TextField('Question Text')

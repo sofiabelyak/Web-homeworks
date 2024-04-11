@@ -60,3 +60,4 @@ class Command(BaseCommand):
 
         LikeQuestion.objects.bulk_create(likes_questions)
         LikeAnswer.objects.bulk_create(likes_answers)
+        
