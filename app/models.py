@@ -32,7 +32,7 @@ class QuestionManager(models.Manager):
         return self.order_by("-created_at")
     
     def get_hot_questions(self):
-        return self.annotate(num_like=Count('like')).order_by('-created_at')
+        return self.annotate(num_like=Count('like')).order_by('-num_like')
     
 class Question(models.Model):
     text = models.TextField('Question Text')
@@ -64,11 +64,28 @@ class Answers(models.Model):
 
 
 
-class Like(models.Model):
+class LikeQuestion(models.Model):
     profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
     created_at = models.DateTimeField('Created at', auto_now_add=True)
     updated_at = models.DateTimeField('Updated at', auto_now=True)
 
+    class Meta:
+        unique_together = ("profile", "question")
+
     def __str__(self):
         return str(self.question)
+    
+
+class LikeAnswer(models.Model):
+    profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
+    answer = models.ForeignKey(Answers, on_delete=models.CASCADE)
+    created_at = models.DateTimeField('Created at', auto_now_add=True)
+    updated_at = models.DateTimeField('Updated at', auto_now=True)
+
+    class Meta:
+        unique_together = ("profile", "answer")
+
+    def __str__(self):
+        return str(self.answer)
+    

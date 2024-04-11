@@ -1,7 +1,7 @@
 from django.core.management.base import BaseCommand
 from django.contrib.auth.models import User
 from random import choice, randint, sample
-from app.models import Profile, Tag, Question, Answers, Like
+from app.models import Profile, Tag, Question, Answers, LikeQuestion, LikeAnswer
 
 class Command(BaseCommand):
     def add_arguments(self, parser):
@@ -50,9 +50,13 @@ class Command(BaseCommand):
         Answers.objects.bulk_create(answers)
 
         likes_questions = []
+        likes_answers= []
         for i in range(ratio * 200 + 1):
             profile = choice(profiles)
             question = choice(questions)
-            likes_questions.append(Like(profile=profile, question=question))
+            likes_questions.append(LikeQuestion(profile=profile, question=question))
+            answer = choice(answers)
+            likes_answers.append(LikeAnswer(profile=profile, answer = answer))
 
-        Like.objects.bulk_create(likes_questions)
+        LikeQuestion.objects.bulk_create(likes_questions)
+        LikeAnswer.objects.bulk_create(likes_answers)

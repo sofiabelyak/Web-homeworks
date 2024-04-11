@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import redirect, render
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from app.models import Question, Answers, Like, Tag, Profile, User, Count
+from app.models import Question, Answers
 
 def paginate(request, object_list, per_page = 5):
     page_num = request.GET.get('page', 1)
