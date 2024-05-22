@@ -1,9 +1,7 @@
 
 {%extends "layouts/base.html" %}
 {% load static %}
-{% block nav %}
-  {% include "components/unnav.html"%}
-{%endblock%}
+{% load bootstrap4 %}
 {%block content %}
 <div class="d-flex gap-3 align-items-center">
   <h1>Registration</h1>
@@ -15,64 +13,9 @@
         </div>
         <div class="col">
           <div class="card-body">
-            <form>
-                <div class="row">
-                  <div class="col-md-6">
-                      <div class="mb-1">
-                          <small class="text-danger">Sorry, this email address already registred!</small>
-                      </div>
-                  </div>
-              </div>
-              <div class="row">
-                  <div class="col-md-6">
-                      <div class="mb-1">
-                          <label for="Login" class="form-label"><strong>Login</strong></label>
-                          <input type="text" class="form-control" id="login" placeholder="Enter your login here">
-                      </div>
-                  </div>
-              </div>
-              <div class="row">
-                  <div class="col-md-6">
-                      <div class="mb-1">
-                          <label for="Email" class="form-label"><strong>Email</strong></label>
-                          <input type="text" class="form-control" id="email" placeholder="Enter your email here">
-                      </div>
-                  </div>
-              </div>
-                <div class="row">
-                  <div class="col-md-6">
-                      <div class="mb-1">
-                          <label for="Nickname" class="form-label"><strong>Nickname</strong></label>
-                          <input type="text" class="form-control" id="nickname" placeholder="Enter your nickname here">
-                      </div>
-                  </div>
-              </div>
-                <div class="row">
-                  <div class="col-md-6">
-                      <div class="mb-1">
-                          <label for="password" class="form-label"><strong>Password</strong></label>
-                          <input type="password" class="form-control" id="password" placeholder="********">
-                      </div>
-                  </div>
-              </div>
-                <div class="row">
-                  <div class="col-md-6">
-                      <div class="mb-1">
-                          <label for="reppassword" class="form-label"><strong>Repeat password</strong></label>
-                          <input type="password" class="form-control" id="reppassword" placeholder="********">
-                      </div>
-                  </div>
-              </div>
-                <div class="row">
-                  <div class="col-md-6">
-                      <div class="mb-1">
-                              <label for="avatar" class="form-label"><strong>Upload avatar</strong></label>
-                              <div class="input-group">
-                                      <input type="file" class="form-control" id="avatar" accept="image/*">
-                              </div>
-                      </div>
-                  </div>
-              </div>
+            <form method="post">
+              {% csrf_token %}
+              {% bootstrap_form form %}
               <div class="row mt-2">
                   <div class="col-md-8">
                       <div class="mb-2">

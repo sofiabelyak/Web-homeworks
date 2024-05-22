@@ -1,8 +1,7 @@
 {%extends "layouts/base.html" %}
+{% load bootstrap4 %}
+
 {% load static %}
-{% block nav %}
-  {% include "components/unnav.html"%}
-{%endblock%}
 {%block content %}
 <div class="d-flex gap-3 align-items-center">
   <h1>New Question</h1>
@@ -14,19 +13,9 @@
         </div>
         <div class="col">
           <div class="card-body">
-            <form>
-              <div class="mb-3 d-flex align-items-center">
-                <label for="questionTitle" class="form-label me-3"><strong>Title</strong></label>
-                <input type="text" class="form-control" id="questionTitle" placeholder="Enter question title">
-              </div>
-              <div class="mb-3 d-flex align-items-center">
-                <label for="questionText" class="form-label me-3"><strong>Text</strong></label>
-                <textarea class="form-control" id="questionText" placeholder="Enter question text" rows="7" ></textarea>
-              </div>
-              <div class="mb-3 d-flex align-items-center">
-                <label for="questionTags" class="form-label me-3"><strong>Tags</strong></label>
-                <input type="text" class="form-control" id="questionTags" placeholder="Enter tags">
-              </div>
+            <form method="post">
+                {% csrf_token %}
+                {% bootstrap_form form %}
                 <div class="mt-3 ms-5">
                           <button type="submit" class="btn btn-outline-success">ASK!</button>
                 </div>

@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.db.models import Count
 
 
+
 class Profile(models.Model):
 
     user = models.OneToOneField(
@@ -11,6 +12,7 @@ class Profile(models.Model):
         primary_key=True,
     )
     avatar = models.ImageField(null= True, default='/static/img/catty.jpg',blank=True)
+
 
     def __str__(self):
         return str(self.user.get_username())

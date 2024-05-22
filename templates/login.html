@@ -1,8 +1,6 @@
 {%extends "layouts/base.html" %}
 {% load static %}
-{% block nav %}
-  {% include "components/unnav.html"%}
-{%endblock%}
+{% load bootstrap4 %}
 {%block content %}
 <div class="d-flex gap-3 align-items-center">
 <h1>Log in</h1>
@@ -14,30 +12,9 @@
       </div>
       <div class="col">
         <div class="card-body">
-          <form>
-              <div class="row">
-                <div class="col-md-6">
-                    <div class="mb-4">
-                        <small class="text-danger">Sorry, wrong password!</small>
-                    </div>
-                </div>
-            </div>
-        <div class="row">
-            <div class="col-md-6">
-                <div class="mb-4">
-                    <label for="login" class="form-label"><strong>Login</strong></label>
-                    <input type="text" class="form-control" id="login" placeholder="Enter your login here">
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-6">
-                <div class="mb-4">
-                    <label for="password" class="form-label"><strong>Password</strong></label>
-                    <input type="password" class="form-control" id="password" placeholder="********">
-                </div>
-            </div>
-        </div>
+          <form method="post" action="">
+            {% csrf_token %}
+            {% bootstrap_form form %}
         <div class="row">
             <div class="col-md-6">
                 <button type="submit" class="btn btn-success">Log In!</button>
@@ -54,4 +31,4 @@
     </div>
   </article>
 </div>
-{%endblock%}
+{%endblock content%}

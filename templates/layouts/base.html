@@ -1,5 +1,13 @@
 
 {% load static %}
+{% if request.user.is_authenticated %}
+{% include 'components/nav.html' %}
+
+{% else %}
+
+{% include 'components/unnav.html' %}
+
+{% endif %}
 <!doctype html>
 <html lang="en">
   <head>
@@ -19,8 +27,6 @@
     </style>
   </head>
   <body>
-    {% block nav %}
-    {% endblock %}
     <main class="container-fluid container-lg mt-3">
 
       <div class="row">

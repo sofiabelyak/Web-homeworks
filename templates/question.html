@@ -1,8 +1,6 @@
 {%extends "layouts/base.html" %}
 {% load static %}
-{% block nav %}
-  {% include "components/unnav.html"%}
-{%endblock%}
+{% load bootstrap4 %}
 {%block content %}
   <div class="col-8">
     {%include "components/question.html" with item=question%}
@@ -17,10 +15,9 @@
         </div>
         <div class="col p-0">
           <div class="card-body">
-            <form>
-              <div class="mb-3 w-100">
-                <textarea class="form-control" id="questionText" placeholder="Enter your answer there" rows="7" style="width: 100%;"></textarea>
-              </div>
+            <form method="post">
+              {% csrf_token %}
+              {% bootstrap_form form %}
               <div class="mt-1 ms-0">
                 <button type="submit" class="btn btn-outline-success" style="width: 15%;">Answer</button>
               </div>
